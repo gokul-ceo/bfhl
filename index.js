@@ -3,7 +3,7 @@ const bodyParser = require("body-parser")
 const app = express()
 app.use(bodyParser.urlencoded({extended:true}))
 app.use(bodyParser.json())
-
+const port = process.env.PORT
 
 function isletter(str){
     return str.length === 1 && str.match(/[a-z]/i)
@@ -21,8 +21,13 @@ function greatestalpha(array){
     const char = String.fromCharCode(max)
     // console.log(char)
     highest.push(char)
+    if(sortedarray.length > 1){
+        return highest;
 
-    return highest;
+    }else{
+        highest = []
+        return highest
+    }
 } 
 // function largestCharacter(arr)
 // {
@@ -78,6 +83,6 @@ app.get('/bfhl',(req,res)=>{
     operation_code:1
     })
 })
-app.listen(3000,()=>{
+app.listen(3000 || port,()=>{
     console.log('Server is running')
 })
