@@ -3,7 +3,7 @@ const bodyParser = require("body-parser")
 const app = express()
 app.use(bodyParser.urlencoded({extended:true}))
 app.use(bodyParser.json())
-const port = process.env.PORT
+const port = process.env.PORT || 8080
 
 function isletter(str){
     return str.length === 1 && str.match(/[a-z]/i)
@@ -83,6 +83,6 @@ app.get('/bfhl',(req,res)=>{
     operation_code:1
     })
 })
-app.listen(3000 || port,()=>{
+app.listen(port,()=>{
     console.log('Server is running')
 })
